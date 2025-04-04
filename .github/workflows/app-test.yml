@@ -28,8 +28,15 @@ jobs:
       - name: Start App
         run: npm start
 
+      - name: Waiting Demo app starting
+        id: check_app
+        run: |
+          npx wait-on http://localhost:3000 -t 120000
+          echo "Demo App ready"
+          echo "app_ready=true" >> $GITHUB_OUTPUT   
+
   tests:
-    timeout-minutes: 60
+    timeout-minutes: 30
     needs: app
     if: needs.app.outputs.app_ready == 'true'
     runs-on: ubuntu-latest
@@ -51,6 +58,6 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          BASE_URL:  ${{ secrets.BASE_URL }}
+          BASE_URL: http://localhost:3000
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
