@@ -1,5 +1,4 @@
-# Web Application for End-to-End Testing
-
+# Web Application for End-to-End Tests
 
 ## Introduction
 - A login page where users can enter their username and password to login
@@ -10,12 +9,10 @@
   - Logout
 
 ## Task
-1. write end-to-end tests for the application and 
+1. Write end-to-end tests for the application and 
 2. set up a CI/CD pipeline to automate the testing process.
 
 ### 1. Writing end-to-end tests
-
-Your task is to write end-to-end tests for the application using [Playwright](https://playwright.dev/). The tests should cover the following scenarios:
 
 #### Test 1
 Test the login flow of the application. The test should:
@@ -42,8 +39,7 @@ Test the logout functionality of the application. The test should:
 
 ### 2. Setting up a CI/CD pipeline
 
-Set up a simple a CI/CD pipeline using GitHub Actions, GitLab CI, or any other CI/CD tool of
-your choice to run the tests on every push to the repository
+Set up CI/CD pipeline using GitHub Actions
 
 ## Deliverables
 1. A link to the repository containing the code for the tests
