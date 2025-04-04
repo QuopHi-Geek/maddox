@@ -22,11 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Demo App
-        run: npm run dev 
-
-      - name: Start App
-        run: npm start
+      - name: Start Demo App (Dev Server)
+        run: npm run dev & 
 
       - name: Waiting Demo app starting
         id: check_app
@@ -36,7 +33,7 @@ jobs:
           echo "app_ready=true" >> $GITHUB_OUTPUT   
 
   tests:
-    timeout-minutes: 30
+    timeout-minutes: 10
     needs: app
     if: needs.app.outputs.app_ready == 'true'
     runs-on: ubuntu-latest
