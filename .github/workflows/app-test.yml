@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  app:
+  app-tests:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Start Demo App (Dev Server)
+      - name: Start Demo App
         run: npm run dev & 
 
       - name: Waiting Demo app starting
@@ -32,7 +32,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --project=chromium --project=firefox
         env:
           BASE_URL: http://localhost:3000
           EMAIL: ${{secrets.EMAIL}}
