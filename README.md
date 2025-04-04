@@ -1,8 +1,7 @@
-# Sample Web Application for End-to-End Testing
+# Web Application for End-to-End Testing
 
 
 ## Introduction
-You are given a simple web application that has the following features:
 - A login page where users can enter their username and password to login
 - A home page where users can see a counter and perform the following actions:
   - Increment the counter
@@ -10,14 +9,13 @@ You are given a simple web application that has the following features:
   - Reset the counter
   - Logout
 
-## Your Task
-As a QA Engineer, your task is to 
+## Task
 1. write end-to-end tests for the application and 
 2. set up a CI/CD pipeline to automate the testing process.
 
 ### 1. Writing end-to-end tests
 
-Your task is to write end-to-end tests for the application using [Playwright](https://playwright.dev/) or any other end-to-end testing framework of your choice. The tests should cover the following scenarios:
+Your task is to write end-to-end tests for the application using [Playwright](https://playwright.dev/). The tests should cover the following scenarios:
 
 #### Test 1
 Test the login flow of the application. The test should:
@@ -44,17 +42,12 @@ Test the logout functionality of the application. The test should:
 
 ### 2. Setting up a CI/CD pipeline
 
-After writing the tests, set up a simple a CI/CD pipeline using GitHub Actions, GitLab CI, or any other CI/CD tool of
+Set up a simple a CI/CD pipeline using GitHub Actions, GitLab CI, or any other CI/CD tool of
 your choice to run the tests on every push to the repository
 
-## Deliverables for the interview
+## Deliverables
 1. A link to the repository containing the code for the tests
 2. A link to the CI/CD pipeline that runs the tests
-
-During the interview, you will be asked to run the tests and explain your thought process. We will also provide you with
-a buggy version of the application to check whether your tests can catch the bugs. <br> Happy coding! 🚀
-
-
 
 
 ## Getting Started
