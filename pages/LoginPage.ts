@@ -20,7 +20,7 @@ export class LoginPage {
         await this.page.goto(url);
     }
 
-    async fillUserDetails(username: string, password: string) {
+    async fillUserDetails(username: any, password: any) {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
     }
@@ -29,7 +29,7 @@ export class LoginPage {
         await this.loginButton.click();
     }
 
-    async verifyLoginSuccess(url: string) {
+    async verifyLoginSuccess(url: any) {
         await expect(this.page).toHaveURL(url);
     }
 

@@ -2,22 +2,25 @@ import { test } from '@playwright/test';
 import {LoginPage} from '../pages/LoginPage';
 import {HomePage} from '../pages/HomePage';
 
-import dotenv from 'dotenv';
-import path from 'path';
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
+//initialize .env 
+const env = process.env;
+const BASE_URL = env.BASE_URL;
+const EMAIL = env.EMAIL;
+const PASSWORD = env.PASSWORD;
 
 
 // TEST 1 - LOGIN USER
 test("should login successfully",async({page})=>{
   const login = new LoginPage(page);
 
-  await login.gotoLogin(process.env.BASE_URL + "/login");
-  await login.fillUserDetails(process.env.EMAIL,process.env.PASSWORD);
+  await login.gotoLogin(BASE_URL+ "/login");
+  await login.fillUserDetails(EMAIL,PASSWORD);
 
   await login.clickLogin();
 
   //verify user redirected to the home page
-  await login.verifyLoginSuccess(process.env.BASE_URL);
+  await login.verifyLoginSuccess(BASE_URL);
 
 })
 
@@ -25,9 +28,9 @@ test("should login successfully",async({page})=>{
 test("should test unsuccessful login",async({page})=>{
   const login = new LoginPage(page);
 
-  await login.gotoLogin(process.env.BASE_URL + "/login");
+  await login.gotoLogin(BASE_URL + "/login");
   //attempt login with invalid credentials
-  await login.fillUserDetails(process.env.EMAIL,process.env.PASSWORD+"wp");
+  await login.fillUserDetails(EMAIL,PASSWORD+"wp");
 
   await login.clickLogin();
 
@@ -42,12 +45,12 @@ test("should test counter functionality",async({page})=>{
   const login = new LoginPage(page);
   const homepage = new HomePage(page);
 
-  await login.gotoLogin(process.env.BASE_URL + "/login");
-  await login.fillUserDetails(process.env.EMAIL,process.env.PASSWORD);
+  await login.gotoLogin(BASE_URL + "/login");
+  await login.fillUserDetails(EMAIL,PASSWORD);
 
   await login.clickLogin();
   //verify user redirected to the home page
-  await login.verifyLoginSuccess(process.env.BASE_URL);
+  await login.verifyLoginSuccess(BASE_URL);
 
 
   //verify increase counter
@@ -70,17 +73,17 @@ test("should test successful user logout",async({page})=>{
   const login = new LoginPage(page);
   const homepage = new HomePage(page);
 
-  await login.gotoLogin(process.env.BASE_URL + "/login");
-  await login.fillUserDetails(process.env.EMAIL,process.env.PASSWORD);
+  await login.gotoLogin(BASE_URL + "/login");
+  await login.fillUserDetails(EMAIL,PASSWORD);
 
   await login.clickLogin();
   //verify user redirected to the home page
-  await login.verifyLoginSuccess(process.env.BASE_URL);
+  await login.verifyLoginSuccess(BASE_URL);
 
   //logout user
   await homepage.logout();
 
   //verify successful logout and redirected to login
-  await homepage.verifySuccessLogout(process.env.BASE_URL + "/login");
+  await homepage.verifySuccessLogout(BASE_URL + "/login");
 
 })
