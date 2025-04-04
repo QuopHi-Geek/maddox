@@ -5,8 +5,33 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
+  app:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    outputs:
+      app_ready: ${{ steps.check_app.outputs.app_ready }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Demo App
+        run: npm run build 
+
+      - name: Start App
+        run: npm start
+
+  tests:
     timeout-minutes: 60
+    needs: app
+    if: needs.app.outputs.app_ready == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -26,6 +51,5 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          BASE_URL: ${{ secrets.BASE_URL }}
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}

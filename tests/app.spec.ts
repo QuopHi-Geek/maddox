@@ -4,7 +4,6 @@ import {HomePage} from '../pages/HomePage';
 
 import dotenv from 'dotenv';
 import path from 'path';
-import { count } from 'console';
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 
