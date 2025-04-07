@@ -70,6 +70,12 @@ export class HomePage {
   async verifySuccessLogout(url: string) {
     await expect(this.page).toHaveURL(url);
   }
+
+  async verifySuccessLogoutBackToHomePage(url: any){
+    await this.page.goBack();
+    await expect(this.page).not.toHaveURL(url)
+    console.log(this.page.url()) // should be expected login page
+  }
 }
 
 export default HomePage;

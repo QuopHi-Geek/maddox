@@ -86,4 +86,9 @@ test("should test successful user logout",async({page})=>{
   //verify successful logout and redirected to login
   await homepage.verifySuccessLogout(BASE_URL + "/login");
 
+
+  //verify that the user cannot access the home page
+  await homepage.verifySuccessLogoutBackToHomePage(BASE_URL);
+
+
 })
